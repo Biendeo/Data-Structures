@@ -142,6 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="arrays.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="testStructures.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Doxyfile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
