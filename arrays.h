@@ -5,7 +5,7 @@
 	\file arrays.h
 	\brief A set of functions for C/C++ which make arrays easy work.
 	\author Thomas Moffet (Biendeo)
-	\date 27/08/2015 - 28/08/2015
+	\date 27/08/2015 - 29/08/2015
 
 	LONG DESCRIPTION LONG DESCRIPTION
 	Ideally this should work on all compilers for all systems.
@@ -17,6 +17,7 @@
 #ifdef __cplusplus
 
 #include <iostream>
+#include <stdexcept>
 
 class intArrayEx {
 	private:
@@ -39,7 +40,7 @@ class intArrayEx {
 
 	intArrayEx();
 	int append(const int &n);
-	int operator[] (const int &n);
+	int& operator[] (const int &n);
 	void operator= (intArrayEx &arr);
 	friend intArrayEx operator+ (intArrayEx &array1, intArrayEx &array2);
 	friend std::ostream& operator<< (std::ostream &out, intArrayEx &arr);
@@ -80,15 +81,20 @@ int intArrayEx::append(const int &n) {
 
 	UNIMPLEMENTED
 */
-int intArrayEx::operator[] (const int &n) {
-	if (n > size || n < 0) {
-		return 0;
-	} else {
-		Item *currentItem = first;
-		for (int i = 1; i != n; i++) {
-			currentItem = currentItem->next;
+int& intArrayEx::operator[] (const int &n) {
+	try {
+		if (n >= size || n < 0) {
+			throw n;
+		} else {
+			Item *currentItem = first;
+			for (int i = 1; i <= n; i++) {
+				currentItem = currentItem->next;
+			}
+			return currentItem->value;
 		}
-		return currentItem->value;
+	}
+	catch (int) {
+		std::cerr << "ERROR: intArrayEx[" << n << "] is not a valid index (try 0.." << size - 1 << ")." << std::endl;
 	}
 }
 
@@ -135,6 +141,7 @@ intArrayEx operator+ (intArrayEx &array1, intArrayEx &array2) {
 /**
 	\brief Pipes 
 */
+
 std::ostream& operator<< (std::ostream &out, intArrayEx &arr) {
 	if (arr.size == 0) {
 		out << "<empty>";
