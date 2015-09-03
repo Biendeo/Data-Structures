@@ -2,7 +2,7 @@
 	\file testStructures.cpp
 	\brief A test file that demonstrates the capabilities of all the headers.
 	\author Thomas Moffet (Biendeo)
-	\date 27/08/2015 - 29/08/2015
+	\date 27/08/2015 - 3/09/2015
 
 	LONG DESCRIPTION LONG DESCRIPTION
 	Ideally this should work on all compilers for all systems.

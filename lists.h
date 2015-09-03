@@ -1,11 +1,8 @@
-#ifndef _BIENDEO_LISTS_H_
-#define _BIENDEO_LISTS_H_
-
 /**
 	\file arrays.h
 	\brief A set of functions for C/C++ which make arrays easy work.
 	\author Thomas Moffet (Biendeo)
-	\date 27/08/2015 - 29/08/2015
+	\date 27/08/2015 - 3/09/2015
 
 	LONG DESCRIPTION LONG DESCRIPTION
 	Ideally this should work on all compilers for all systems.
@@ -18,7 +15,6 @@
 #include <iostream>
 #include <stdexcept>
 
-/// \class intListEx
 class intListEx {
 	private:
 
@@ -48,7 +44,7 @@ class intListEx {
 	int pop();
 	int& operator[] (const int &n);
 	void operator= (intListEx &arr);
-	friend intListEx operator+ (intListEx &array1, intListEx &array2);
+	friend intListEx operator+ (intListEx &list1, intListEx &list2);
 	friend std::ostream& operator<< (std::ostream &out, intListEx &arr);
 
 };
@@ -106,14 +102,11 @@ int intListEx::pop() {
 	return value;
 }
 
-/**
-	Accesses a specific member.
-*/
+/// Accesses a specific member.
 int& intListEx::operator[] (const int &n) {
 	try {
 		if (n >= size || n < 0) {
 			throw n;
-			return first->value; // This never gets called. It just keeps the compiler happy.
 		} else {
 			Item *currentItem = first;
 			for (int i = 1; i <= n; i++) {
@@ -124,14 +117,13 @@ int& intListEx::operator[] (const int &n) {
 	}
 	catch (int) {
 		std::cerr << "ERROR: intListEx[" << n << "] is not a valid index (try 0.." << size - 1 << ")." << std::endl;
+		exit(5); // TODO: Think of a good error code.
 	}
-	
+	return first->value; // This never gets called. It just keeps the compiler happy.
 }
 
-/**
-	Creates an identical array (with different addresses) of an existing
-	one.
-*/
+/// Creates an identical array (with different addresses) of an existing
+/// one.
 void intListEx::operator= (intListEx &arr) {
 	clear();
 	if (arr.size > 0) {
@@ -144,33 +136,29 @@ void intListEx::operator= (intListEx &arr) {
 	}
 }
 
-/**
-	Adds two arrays together.
-*/
-intListEx operator+ (intListEx &array1, intListEx &array2) {
-	intListEx addedArray;
+/// Adds two arrays together.
+intListEx operator+ (intListEx &list1, intListEx &list2) {
+	intListEx addedList;
 
-	if (array1.size == 0) {
-		addedArray = array2;
+	if (list1.size == 0) {
+		addedList = list2;
 	}
 	
-	addedArray = array1;
+	addedList = list1;
 
-	if (array2.size != 0) {
-		intListEx::Item *currentItem = array2.first;
+	if (list2.size != 0) {
+		intListEx::Item *currentItem = list2.first;
 		while (currentItem->next != NULL) {
-			addedArray.append(currentItem->value);
+			addedList.append(currentItem->value);
 			currentItem = currentItem->next;
 		}
-		addedArray.append(currentItem->value);
+		addedList.append(currentItem->value);
 	}
 
-	return addedArray;
+	return addedList;
 }
 
-/**
-	Pipes
-*/
+/// This outputs the list to ostream.
 std::ostream& operator<< (std::ostream &out, intListEx &arr) {
 	if (arr.size == 0) {
 		out << "<empty>";
@@ -186,17 +174,13 @@ std::ostream& operator<< (std::ostream &out, intListEx &arr) {
 	return out;
 }
 
-/**
-	The default constructor for an item.
-*/
+/// The default constructor for an item.
 intListEx::Item::Item() {
 	value = 0;
 	next = NULL;
 }
 
-/**
-	The constructor for an item with a given value.
-*/
+/// The constructor for an item with a given value.
 intListEx::Item::Item(const int &n) {
 	value = n;
 	next = NULL;
@@ -205,5 +189,3 @@ intListEx::Item::Item(const int &n) {
 #endif
 
 // Anything from here on out can be used in both C and C++.
-
-#endif
