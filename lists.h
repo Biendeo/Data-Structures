@@ -34,13 +34,18 @@ class intListEx {
 	};
 	Item *first;
 
+	private:
+	Item& getItem(const int &n);
+
 	public:
 
 	/// This stores the size of the array.
 	int size;
 
 	intListEx();
+	void clear();
 	int append(const int &n);
+	int pop();
 	int& operator[] (const int &n);
 	void operator= (intListEx &arr);
 	friend intListEx operator+ (intListEx &array1, intListEx &array2);
@@ -48,16 +53,31 @@ class intListEx {
 
 };
 
+/// Grabs an item in the list given an index.
+intListEx::Item& intListEx::getItem(const int &n) {
+	// TODO: NO POINTERS. :(
+	Item *currentItem = first;
+	for (int i = 0; i < n; i++) {
+		currentItem = currentItem->next;
+	}
+
+	return *currentItem;
+}
+
 /// The default constructor for intListEx.
 intListEx::intListEx() {
 	size = 0;
 	first = NULL;
 }
 
-/**
-	\fn int intListEx::apend(const int &n)
-	Adds a number to the end of the array.
-*/
+/// Removes all items from the list (but it still exists).
+void intListEx::clear() {
+	while (size > 0) {
+		pop();
+	}
+}
+
+/// Adds a value to the end of the list.
 int intListEx::append(const int &n) {
 	if (size == 0) {
 		first = new Item(n);
@@ -72,6 +92,18 @@ int intListEx::append(const int &n) {
 
 	size++;
 	return n;
+}
+
+/// Deletes the last value of the list (and returns it).
+int intListEx::pop() {
+	Item *corn = &getItem(size - 1);
+	int value = corn->value;
+	if (size > 1) {
+		getItem(size - 2).next = NULL;
+	}
+	delete corn;
+	size--;
+	return value;
 }
 
 /**
@@ -101,7 +133,7 @@ int& intListEx::operator[] (const int &n) {
 	one.
 */
 void intListEx::operator= (intListEx &arr) {
-	// TODO: ADD A BIT TO CLEAR THE LIST FIRST
+	clear();
 	if (arr.size > 0) {
 		Item *currentItem = arr.first;
 		while (currentItem->next != NULL) {

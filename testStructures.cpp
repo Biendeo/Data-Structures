@@ -44,5 +44,21 @@ int main(int argc, char *argv[]) {
 
 	std::cout << "testA = " << testA << std::endl;
 
+	testA.pop();
+
+	std::cout << "Popped testA = " << testA << std::endl;
+
+	testA.clear();
+
+	std::cout << "Cleared testA = " << testA << std::endl;
+
+	testA = testB;
+
+	std::cout << "testA = testB = " << testA << std::endl;
+	
+	testA = testC;
+
+	std::cout << "testA = testC = " << testA << std::endl;
+
 	return 0;
 }
