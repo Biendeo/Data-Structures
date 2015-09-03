@@ -142,7 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="arrays.h" />
+    <ClInclude Include="lists.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="testStructures.cpp" />

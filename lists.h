@@ -1,5 +1,5 @@
-#ifndef _BIENDEO_HEADER_H_
-#define _BIENDEO_HEADER_H_
+#ifndef _BIENDEO_LISTS_H_
+#define _BIENDEO_LISTS_H_
 
 /**
 	\file arrays.h
@@ -13,13 +13,13 @@
 	Priority: Very low. I don't really know how to do much of this without overloading C++ operators. Making C functions for this will be finicky, but I'll take a stab at it.
 */
 
-// Anything within this block is available only to C++.
 #ifdef __cplusplus
 
 #include <iostream>
 #include <stdexcept>
 
-class intArrayEx {
+/// \class intListEx
+class intListEx {
 	private:
 
 	protected:
@@ -36,31 +36,29 @@ class intArrayEx {
 
 	public:
 
+	/// This stores the size of the array.
 	int size;
 
-	intArrayEx();
+	intListEx();
 	int append(const int &n);
 	int& operator[] (const int &n);
-	void operator= (intArrayEx &arr);
-	friend intArrayEx operator+ (intArrayEx &array1, intArrayEx &array2);
-	friend std::ostream& operator<< (std::ostream &out, intArrayEx &arr);
+	void operator= (intListEx &arr);
+	friend intListEx operator+ (intListEx &array1, intListEx &array2);
+	friend std::ostream& operator<< (std::ostream &out, intListEx &arr);
 
 };
 
-/**
-	\brief The default constructor for intArrayEx.
-
-	UNFINISHED
-*/
-intArrayEx::intArrayEx() {
+/// The default constructor for intListEx.
+intListEx::intListEx() {
 	size = 0;
 	first = NULL;
 }
 
 /**
-	\brief Adds a number to the end of the array.
+	\fn int intListEx::apend(const int &n)
+	Adds a number to the end of the array.
 */
-int intArrayEx::append(const int &n) {
+int intListEx::append(const int &n) {
 	if (size == 0) {
 		first = new Item(n);
 	} else {
@@ -77,14 +75,13 @@ int intArrayEx::append(const int &n) {
 }
 
 /**
-	\brief Accesses a specific member.
-
-	UNIMPLEMENTED
+	Accesses a specific member.
 */
-int& intArrayEx::operator[] (const int &n) {
+int& intListEx::operator[] (const int &n) {
 	try {
 		if (n >= size || n < 0) {
 			throw n;
+			return first->value; // This never gets called. It just keeps the compiler happy.
 		} else {
 			Item *currentItem = first;
 			for (int i = 1; i <= n; i++) {
@@ -94,15 +91,16 @@ int& intArrayEx::operator[] (const int &n) {
 		}
 	}
 	catch (int) {
-		std::cerr << "ERROR: intArrayEx[" << n << "] is not a valid index (try 0.." << size - 1 << ")." << std::endl;
+		std::cerr << "ERROR: intListEx[" << n << "] is not a valid index (try 0.." << size - 1 << ")." << std::endl;
 	}
+	
 }
 
 /**
-	\brief Creates an identical array (with different addresses) of an existing
+	Creates an identical array (with different addresses) of an existing
 	one.
 */
-void intArrayEx::operator= (intArrayEx &arr) {
+void intListEx::operator= (intListEx &arr) {
 	// TODO: ADD A BIT TO CLEAR THE LIST FIRST
 	if (arr.size > 0) {
 		Item *currentItem = arr.first;
@@ -115,10 +113,10 @@ void intArrayEx::operator= (intArrayEx &arr) {
 }
 
 /**
-	\brief Adds two arrays together.
+	Adds two arrays together.
 */
-intArrayEx operator+ (intArrayEx &array1, intArrayEx &array2) {
-	intArrayEx addedArray;
+intListEx operator+ (intListEx &array1, intListEx &array2) {
+	intListEx addedArray;
 
 	if (array1.size == 0) {
 		addedArray = array2;
@@ -127,7 +125,7 @@ intArrayEx operator+ (intArrayEx &array1, intArrayEx &array2) {
 	addedArray = array1;
 
 	if (array2.size != 0) {
-		intArrayEx::Item *currentItem = array2.first;
+		intListEx::Item *currentItem = array2.first;
 		while (currentItem->next != NULL) {
 			addedArray.append(currentItem->value);
 			currentItem = currentItem->next;
@@ -139,14 +137,13 @@ intArrayEx operator+ (intArrayEx &array1, intArrayEx &array2) {
 }
 
 /**
-	\brief Pipes 
+	Pipes
 */
-
-std::ostream& operator<< (std::ostream &out, intArrayEx &arr) {
+std::ostream& operator<< (std::ostream &out, intListEx &arr) {
 	if (arr.size == 0) {
 		out << "<empty>";
 	} else {
-		intArrayEx::Item *currentItem = arr.first;
+		intListEx::Item *currentItem = arr.first;
 		while (currentItem->next != NULL) {
 			out << currentItem->value << ", ";
 			currentItem = currentItem->next;
@@ -158,17 +155,17 @@ std::ostream& operator<< (std::ostream &out, intArrayEx &arr) {
 }
 
 /**
-	\brief The default constructor for an item.
+	The default constructor for an item.
 */
-intArrayEx::Item::Item() {
+intListEx::Item::Item() {
 	value = 0;
 	next = NULL;
 }
 
 /**
-	\brief The constructor for an item with a given value.
+	The constructor for an item with a given value.
 */
-intArrayEx::Item::Item(const int &n) {
+intListEx::Item::Item(const int &n) {
 	value = n;
 	next = NULL;
 }

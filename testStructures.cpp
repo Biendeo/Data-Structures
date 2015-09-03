@@ -1,16 +1,26 @@
+/**
+	\file testStructures.cpp
+	\brief A test file that demonstrates the capabilities of all the headers.
+	\author Thomas Moffet (Biendeo)
+	\date 27/08/2015 - 29/08/2015
+
+	LONG DESCRIPTION LONG DESCRIPTION
+	Ideally this should work on all compilers for all systems.
+*/
+
 #include <iostream>
 
-#include "arrays.h"
+#include "lists.h"
 
 int main(int argc, char *argv[]) {
-	intArrayEx testA;
-	intArrayEx testB;
+	intListEx testA;
+	intListEx testB;
 	testA.append(1);
 	testA.append(2);
 	testA.append(3);
 	testB.append(2);
 	testB.append(5);
-	intArrayEx testC;
+	intListEx testC;
 
 	std::cout << "testA size = " << testA.size << std::endl;
 	std::cout << "testA  = " << testA << std::endl;
