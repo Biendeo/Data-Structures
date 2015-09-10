@@ -10,17 +10,20 @@
 
 #include <iostream>
 
-#include "lists.h"
+#include "Lists.h"
+#include "HugeInt.h"
 
 int main(int argc, char *argv[]) {
-	intListEx testA;
-	intListEx testB;
+	using namespace Biendeo;
+	std::cout << "--== Testing IntListEx ==--" << std::endl;
+	IntListEx testA;
+	IntListEx testB;
 	testA.append(1);
 	testA.append(2);
 	testA.append(3);
 	testB.append(2);
 	testB.append(5);
-	intListEx testC;
+	IntListEx testC;
 
 	std::cout << "testA size = " << testA.size << std::endl;
 	std::cout << "testA  = " << testA << std::endl;
@@ -60,6 +63,14 @@ int main(int argc, char *argv[]) {
 	testA = testC;
 
 	std::cout << "testA = testC = " << testA << std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << "--== Testing HugeInt ==--" << std::endl;
+
+	HugeInt a;
+	HugeInt b = 0;
+	HugeInt c = 50123123912356;
 
 	return 0;
 }

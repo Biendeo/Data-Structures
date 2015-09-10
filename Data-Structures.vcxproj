@@ -142,10 +142,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="lists.h" />
+    <ClInclude Include="HugeInt.h" />
+    <ClInclude Include="Lists.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="testStructures.cpp" />
+    <ClCompile Include="TestStructures.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Doxyfile" />
