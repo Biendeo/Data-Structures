@@ -28,6 +28,7 @@ int main(int argc, char *argv[]) {
 	std::cout << "testB size = " << testB.size << std::endl;
 	std::cout << "testB  = " << testB << std::endl;
 
+	// TODO: Fix the + operator.
 	std::cout << "test(A+B) size = " << (testA + testB).size << std::endl;
 	std::cout << "test(A+B)  = " << testA + testB << std::endl;
 

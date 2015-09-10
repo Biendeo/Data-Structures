@@ -1,8 +1,8 @@
 /**
-	\file arrays.h
+	\class intListEx
 	\brief A set of functions for C/C++ which make arrays easy work.
 	\author Thomas Moffet (Biendeo)
-	\date 27/08/2015 - 3/09/2015
+	\date 27/08/2015 - 10/09/2015
 
 	LONG DESCRIPTION LONG DESCRIPTION
 	Ideally this should work on all compilers for all systems.
@@ -13,8 +13,10 @@
 #ifdef __cplusplus
 
 #include <iostream>
+#include <cstdlib>
 #include <stdexcept>
 
+/// The list class.
 class intListEx {
 	private:
 
@@ -39,8 +41,11 @@ class intListEx {
 	int size;
 
 	intListEx();
+	//~intListEx();
 	void clear();
 	int append(const int &n);
+	int prepend(const int &n);
+	int shift();
 	int pop();
 	int& operator[] (const int &n);
 	void operator= (intListEx &arr);
@@ -52,6 +57,10 @@ class intListEx {
 /// Grabs an item in the list given an index.
 intListEx::Item& intListEx::getItem(const int &n) {
 	// TODO: NO POINTERS. :(
+	if (size < n) {
+		// TODO: Throw an error.
+		std::cout << "size is " << size << ", n is " << n << std::endl;
+	}
 	Item *currentItem = first;
 	for (int i = 0; i < n; i++) {
 		currentItem = currentItem->next;
@@ -66,10 +75,18 @@ intListEx::intListEx() {
 	first = NULL;
 }
 
+/*
+// TODO: This seg faults during temporary usage. Right now it's eating memory.
+/// The deconstructor for intListEx.
+intListEx::~intListEx() {
+	clear();
+}
+*/
+
 /// Removes all items from the list (but it still exists).
 void intListEx::clear() {
 	while (size > 0) {
-		pop();
+		shift();
 	}
 }
 
@@ -90,13 +107,34 @@ int intListEx::append(const int &n) {
 	return n;
 }
 
+/// Adds a value to the beginning of the list.
+int intListEx::prepend(const int &n) {
+	Item *nextItem = first;
+	first = new Item(n);
+	first->next = nextItem;
+	size++;
+	return n;
+}
+
 /// Deletes the last value of the list (and returns it).
 int intListEx::pop() {
 	Item *corn = &getItem(size - 1);
 	int value = corn->value;
 	if (size > 1) {
 		getItem(size - 2).next = NULL;
+	} else {
+		first = NULL;
 	}
+	delete corn;
+	size--;
+	return value;
+}
+
+/// Deletes the first value of the list (and returns it).
+int intListEx::shift() {
+	Item *corn = &getItem(0);
+	int value = corn->value;
+	first = corn->next;
 	delete corn;
 	size--;
 	return value;
