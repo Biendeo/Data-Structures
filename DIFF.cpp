@@ -1,5 +1,5 @@
 /**
-	\file testStructures.cpp
+	\file TestStructures.cpp
 	\brief A test file that demonstrates the capabilities of all the headers.
 	\author Thomas Moffet (Biendeo)
 	\date 27/08/2015 - 3/09/2015

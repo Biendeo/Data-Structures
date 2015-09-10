@@ -143,10 +143,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="HugeInt.h" />
-    <ClInclude Include="Lists.h" />
+    <ClInclude Include="DAFF.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TestStructures.cpp" />
+    <ClCompile Include="DIFF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Doxyfile" />

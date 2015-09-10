@@ -21,12 +21,12 @@
     <ClInclude Include="HugeInt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Lists.h">
+    <ClInclude Include="DAFF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TestStructures.cpp">
+    <ClCompile Include="DIFF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
