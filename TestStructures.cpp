@@ -26,17 +26,17 @@ int main(int argc, char *argv[]) {
 	IntListEx testC;
 
 	std::cout << "testA size = " << testA.size << std::endl;
-	std::cout << "testA  = " << testA << std::endl;
+	std::cout << "testA = " << testA << std::endl;
 
 	std::cout << "testB size = " << testB.size << std::endl;
-	std::cout << "testB  = " << testB << std::endl;
+	std::cout << "testB = " << testB << std::endl;
 
 	// TODO: Fix the + operator.
 	std::cout << "test(A+B) size = " << (testA + testB).size << std::endl;
-	std::cout << "test(A+B)  = " << testA + testB << std::endl;
+	std::cout << "test(A+B) = " << testA + testB << std::endl;
 
 	std::cout << "testC size = " << testC.size << std::endl;
-	std::cout << "testC  = " << testC << std::endl;
+	std::cout << "testC = " << testC << std::endl;
 
 	std::cout << "testA[0] = " << testA[0] << ", testA[1] = " << testA[1] << ", testA[2] = " << testA[2] << std::endl;
 
@@ -70,7 +70,15 @@ int main(int argc, char *argv[]) {
 
 	HugeInt a;
 	HugeInt b = 0;
-	HugeInt c = 50123123912356;
+	HugeInt c = 123456789;
+	HugeInt d = 5012353;
+
+	std::cout << "a = " << a << std::endl;
+	std::cout << "b = " << b << std::endl;
+	std::cout << "c = " << c << std::endl;
+	std::cout << "d = " << d << std::endl;
+
+	std::cout << "c + d = " << c + d << std::endl;
 
 	return 0;
 }
