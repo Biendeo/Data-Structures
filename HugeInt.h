@@ -54,6 +54,7 @@ namespace Biendeo {
 		long long value;
 
 		/// The sign of the number (0 is positive).
+		
 		enum class sign {
 			positive,
 			negative
@@ -147,9 +148,9 @@ namespace Biendeo {
 
 			for (int i = 0; i < largerNum.getExponent() - smallerNum.getExponent(); i++) {
 				smallerNum.value /= 10;
-			}
+			} 
 			addedNum.value = largerNum.getValue() + smallerNum.getValue();
-			if (addedNum.value >= (long long)pow(10, 15)) {
+			if (addedNum.value >= (long long)pow(10, 16)) {
 				addedNum.value /= 10;
 				addedNum.exponent++;
 			}
@@ -175,15 +176,23 @@ namespace Biendeo {
 
 		switch (num.getDisplayType()) {
 			case HugeInt::DisplayType::Int:
+			case HugeInt::DisplayType::CommaInt:
 			default:
 				if (exponent > 15) {
 					for (int i = exponent; i >= 0; i--) {
+						
 						if (exponent - i <= 15) {
 							out << ((value / tenPower) % 10);
 						} else {
 							out << "0";
 						}
-
+						
+						if (num.getDisplayType() == HugeInt::DisplayType::CommaInt) {
+							if (i % 3 == 0 && i != 0) {
+								out << ",";
+							}
+						}
+						
 						tenPower /= 10;
 					}
 				} else {
@@ -201,6 +210,12 @@ namespace Biendeo {
 						if (i <= 0) {
 							if ((value / tenPower) == 0) {
 								break;
+							}
+						}
+						
+						if (num.getDisplayType() == HugeInt::DisplayType::CommaInt) {
+							if (i % 3 == 0 && i != 0) {
+								out << ",";
 							}
 						}
 

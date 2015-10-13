@@ -9,12 +9,56 @@
 */
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
+#include "Sorts.h"
+
+// Experimental stuff
 #include "Lists.h"
 #include "HugeInt.h"
 
+void testSorts();
+void testIntListEx();
+void testHugeInt();
+
 int main(int argc, char *argv[]) {
+	testIntListEx();
+	testHugeInt();
+	testSorts();
+
+	return EXIT_SUCCESS;
+}
+
+void testSorts() {
 	using namespace Biendeo;
+
+	std::cout << "--== Testing Sorts ==--" << std::endl;
+
+	const int ARRAY_SIZE = 20;
+	srand(time(NULL));
+
+	int *arrA = new int[ARRAY_SIZE];
+	std::cout << "Original array:" << std::endl;
+	for (int i = 0; i < ARRAY_SIZE; i++) {
+		arrA[i] = rand() % 100;
+		std::cout << arrA[i] << std::endl;
+	}
+	std::cout << std::endl;
+	std::cout << "Sorted array:" << std::endl;
+	bubbleSort(arrA, ARRAY_SIZE);
+	for (int i = 0; i < ARRAY_SIZE; i++) {
+		std::cout << arrA[i] << std::endl;
+	}
+
+	delete[] arrA;
+
+	std::cout << std::endl;
+}
+
+void testIntListEx() {
+	using namespace Biendeo;
+
 	std::cout << "--== Testing IntListEx ==--" << std::endl;
 	IntListEx testA;
 	IntListEx testB;
@@ -59,12 +103,16 @@ int main(int argc, char *argv[]) {
 	testA = testB;
 
 	std::cout << "testA = testB = " << testA << std::endl;
-	
+
 	testA = testC;
 
 	std::cout << "testA = testC = " << testA << std::endl;
 
 	std::cout << std::endl;
+}
+
+void testHugeInt() {
+	using namespace Biendeo;
 
 	std::cout << "--== Testing HugeInt ==--" << std::endl;
 
@@ -78,7 +126,9 @@ int main(int argc, char *argv[]) {
 	std::cout << "c = " << c << std::endl;
 	std::cout << "d = " << d << std::endl;
 
+	c.setDisplayType(HugeInt::DisplayType::CommaInt);
+
 	std::cout << "c + d = " << c + d << std::endl;
 
-	return 0;
+	std::cout << std::endl;
 }
