@@ -21,10 +21,13 @@
     <ClInclude Include="HugeInt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Lists.h">
+    <ClInclude Include="Sorts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sorts.h">
+    <ClInclude Include="IntListEx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

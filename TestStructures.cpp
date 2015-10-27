@@ -13,19 +13,22 @@
 #include <ctime>
 
 #include "Sorts.h"
+#include "LinkedList.h"
 
 // Experimental stuff
-#include "Lists.h"
+#include "IntListEx.h"
 #include "HugeInt.h"
 
 void testSorts();
 void testIntListEx();
 void testHugeInt();
+void testLinkedList();
 
 int main(int argc, char *argv[]) {
 	testIntListEx();
 	testHugeInt();
 	testSorts();
+	testLinkedList();
 
 	return EXIT_SUCCESS;
 }
@@ -56,18 +59,39 @@ void testSorts() {
 	std::cout << std::endl;
 }
 
+void testLinkedList() {
+	using namespace Biendeo;
+
+	std::cout << "--== Testing Linked Lists ==--" << std::endl;
+
+	IntLinkedList listA = IntLinkedList();
+
+	listA.append(1);
+	listA.append(5);
+	listA.append(8);
+	listA.append(3);
+	listA.append(2);
+
+	int x = listA.getElementByPosition(3);
+	std::cout << x << std::endl;
+	x = listA.getElementByPosition(4);
+	std::cout << x << std::endl;
+	x = listA.getElementByPosition(5);
+	std::cout << x << std::endl;
+}
+
 void testIntListEx() {
 	using namespace Biendeo;
 
 	std::cout << "--== Testing IntListEx ==--" << std::endl;
-	IntListEx testA;
-	IntListEx testB;
+	IntListEx testA = IntListEx();
+	IntListEx testB = IntListEx();
 	testA.append(1);
 	testA.append(2);
 	testA.append(3);
 	testB.append(2);
 	testB.append(5);
-	IntListEx testC;
+	IntListEx testC = IntListEx();
 
 	std::cout << "testA size = " << testA.size << std::endl;
 	std::cout << "testA = " << testA << std::endl;
@@ -116,10 +140,10 @@ void testHugeInt() {
 
 	std::cout << "--== Testing HugeInt ==--" << std::endl;
 
-	HugeInt a;
-	HugeInt b = 0;
-	HugeInt c = 123456789;
-	HugeInt d = 5012353;
+	HugeInt a = HugeInt();
+	HugeInt b = HugeInt(0);
+	HugeInt c = HugeInt(123456789);
+	HugeInt d = HugeInt(5012353);
 
 	std::cout << "a = " << a << std::endl;
 	std::cout << "b = " << b << std::endl;
