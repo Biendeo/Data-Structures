@@ -1,7 +1,7 @@
 #pragma once
 
 /**
-	\class IntListEx
+	\file IntListEx.h
 	\brief A set of functions for C/C++ which make arrays easy work.
 	\author Thomas Moffet (Biendeo)
 	\date 27/08/2015 - 10/09/2015

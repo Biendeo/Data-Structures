@@ -2,7 +2,7 @@
 	\file TestStructures.cpp
 	\brief A test file that demonstrates the capabilities of all the headers.
 	\author Thomas Moffet (Biendeo)
-	\date 27/08/2015 - 3/09/2015
+	\date 27/08/2015 - 28/10/2015
 
 	LONG DESCRIPTION LONG DESCRIPTION
 	Ideally this should work on all compilers for all systems.
@@ -14,21 +14,32 @@
 
 #include "Sorts.h"
 #include "LinkedList.h"
+#include "Stack.h"
+#include "Queue.h"
 
 // Experimental stuff
-#include "IntListEx.h"
-#include "HugeInt.h"
+//#include "IntListEx.h"
+//#include "HugeInt.h"
+#include "Set.h"
+//#include "Tree.h"
+//#include "RBTree.h"
 
 void testSorts();
 void testIntListEx();
 void testHugeInt();
 void testLinkedList();
+void testStack();
+void testQueue();
+void testSet();
 
 int main(int argc, char *argv[]) {
-	testIntListEx();
-	testHugeInt();
+	//testIntListEx();
+	//testHugeInt();
 	testSorts();
 	testLinkedList();
+	testStack();
+	testQueue();
+	testSet();
 
 	return EXIT_SUCCESS;
 }
@@ -80,6 +91,68 @@ void testLinkedList() {
 	std::cout << x << std::endl;
 }
 
+void testStack() {
+	using namespace Biendeo;
+	
+	std::cout << "--== Testing Stacks ==--" << std::endl;	
+	
+	IntStack stackA(5);
+	stackA.add(1);
+	stackA.add(4);
+	stackA.add(5);
+	stackA.add(7);
+	stackA.add(2);
+	stackA.add(3); // This should exceed the max size.
+	
+	while (stackA.getSize() > 0) {
+		std::cout << stackA.pop() << std::endl;
+	}
+	
+	std::cout << std::endl;
+}
+
+void testQueue() {
+	using namespace Biendeo;
+	
+	std::cout << "--== Testing Queues ==--" << std::endl;	
+	
+	IntQueue queueA(5);
+	queueA.add(1);
+	queueA.add(4);
+	queueA.add(5);
+	queueA.add(7);
+	queueA.add(2);
+	queueA.add(3); // This should exceed the max size.
+	
+	while (queueA.getSize() > 0) {
+		std::cout << queueA.pop() << std::endl;
+	}
+	
+	std::cout << std::endl;	
+}
+
+void testSet() {
+	using namespace Biendeo;
+	
+	std::cout << "--== Testing Sets ==--" << std::endl;	
+	
+	IntSet setA;
+	setA.add(1);
+	setA.add(4);
+	setA.add(5);
+	setA.add(7);
+	setA.add(2);
+	setA.add(2); // This should print a warning.
+	
+	std::cout << setA.remove(5) << std::endl;
+	std::cout << setA.remove(2) << std::endl;
+	std::cout << setA.remove(7) << std::endl;
+	std::cout << setA.remove(7) << std::endl; // This should cause an error and print 0.
+	std::cout << setA.remove(6) << std::endl; // This should cause an error and print 0.
+	
+	std::cout << std::endl;	
+}
+/*
 void testIntListEx() {
 	using namespace Biendeo;
 
@@ -156,3 +229,4 @@ void testHugeInt() {
 
 	std::cout << std::endl;
 }
+*/

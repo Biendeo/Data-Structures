@@ -1,15 +1,15 @@
 #pragma once
 
 /**
-	\class HugeInt
-	\brief A set of functions that make big integers easy to use.
+	\file LinkedList.h
+	\brief Some basic linked list functionality.
 	\author Thomas Moffet (Biendeo)
-	\date 10/09/2015 - 10/09/2015
+	\date 26/10/2015 - 26/10/2015
 
 	LONG DESCRIPTION LONG DESCRIPTION
 	Ideally this should work on all compilers for all systems.
 
-	Priority: Low.
+	Priority: Medium.
 */
 
 #ifdef __cplusplus
@@ -21,6 +21,7 @@
 namespace Biendeo {
 
 	class IntLinkedList {
+		protected:
 		class Node {
 			public:
 			Node *next;
@@ -39,8 +40,11 @@ namespace Biendeo {
 		~IntLinkedList();
 		int *toArray();
 		int &getElementByPosition(int pos);
+		int &getElementById(int num);
+		int getSize();
 		void append(int num);
 		int pop();
+		int shift();
 	};
 	
 	IntLinkedList::Node::Node(int num) {
@@ -62,6 +66,9 @@ namespace Biendeo {
 	}
 	
 	IntLinkedList::IntLinkedList(int *arr, int arrSize) {
+		first = NULL;
+		last = NULL;
+		size = 0;
 		for (int i = 0; i < arrSize; i++) {
 			append(arr[i]);
 		}
@@ -98,6 +105,33 @@ namespace Biendeo {
 		}
 		
 		return getNode->val;
+	}
+
+	int &IntLinkedList::getElementById(int num) {
+		// TODO: Make this more efficient by utilising previous pointers.
+		Node *getNode = first;
+		int i;
+		for (i = 0; i < size; i++) {
+			if (getNode->val == num) {
+				break;
+			}
+			getNode = getNode->next;
+		}
+
+		try {
+			if (i >= size) {
+				throw num;
+			}
+		}
+		catch (int num) {
+			std::cout << "IntLinkedList.getElementById() could not find " << num << "." << std::endl;
+		}
+
+		return getNode->val;
+	}
+	
+	int IntLinkedList::getSize() {
+		return size;
 	}
 	
 	void IntLinkedList::append(int num) {

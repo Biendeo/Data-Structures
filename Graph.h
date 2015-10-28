@@ -1,10 +1,10 @@
 #pragma once
 
 /**
-	\file Sorts.h
-	\brief A set of functions for C/C++ which make sort integers in arrays.
+	\file Graph.h
+	\brief Some basic graph functionality.
 	\author Thomas Moffet (Biendeo)
-	\date 12/10/2015
+	\date 28/10/15 - 28/10/15
 
 	LONG DESCRIPTION LONG DESCRIPTION
 	Ideally this should work on all compilers for all systems.

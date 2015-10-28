@@ -142,10 +142,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="HugeInt.h" />
     <ClInclude Include="IntListEx.h" />
     <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="Queue.h" />
+    <ClInclude Include="RBTree.h" />
+    <ClInclude Include="Set.h" />
     <ClInclude Include="Sorts.h" />
+    <ClInclude Include="Stack.h" />
+    <ClInclude Include="Tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestStructures.cpp" />

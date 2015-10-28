@@ -1,7 +1,7 @@
 #pragma once
 
 /**
-	\class HugeInt
+	\file HugeInt.h
 	\brief A set of functions that make big integers easy to use.
 	\author Thomas Moffet (Biendeo)
 	\date 10/09/2015 - 10/09/2015
