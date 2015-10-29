@@ -16,12 +16,12 @@
 #include "LinkedList.h"
 #include "Stack.h"
 #include "Queue.h"
+#include "Set.h"
+#include "Tree.h"
 
 // Experimental stuff
 //#include "IntListEx.h"
 //#include "HugeInt.h"
-#include "Set.h"
-//#include "Tree.h"
 //#include "RBTree.h"
 
 void testSorts();
@@ -31,6 +31,7 @@ void testLinkedList();
 void testStack();
 void testQueue();
 void testSet();
+void testTree();
 
 int main(int argc, char *argv[]) {
 	//testIntListEx();
@@ -40,6 +41,7 @@ int main(int argc, char *argv[]) {
 	testStack();
 	testQueue();
 	testSet();
+	testTree();
 
 	return EXIT_SUCCESS;
 }
@@ -152,6 +154,27 @@ void testSet() {
 	
 	std::cout << std::endl;	
 }
+
+void testTree() {
+	using namespace Biendeo;
+	
+	std::cout << "--== Testing Trees ==--" << std::endl;
+	
+	IntTree treeA;
+	
+	treeA.add(4);
+	treeA.add(2);
+	treeA.add(6);
+	treeA.add(1);
+	treeA.add(3);
+	treeA.add(5);
+	treeA.add(7);
+	
+	std::cout << "Size = " << treeA.getSize() << "." << std::endl;
+	
+	std::cout << std::endl;		
+}
+
 /*
 void testIntListEx() {
 	using namespace Biendeo;
