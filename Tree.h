@@ -27,7 +27,8 @@ namespace Biendeo {
 			Node *parent;
 			Node *left;
 			Node *right;
-			Node(int num);
+			IntTree *tree;
+			Node(int num, IntTree *parentTree);
 			~Node();
 		};
 		
@@ -43,11 +44,12 @@ namespace Biendeo {
 		int getSize();
 	};
 
-	IntTree::Node::Node(int num) {
+	IntTree::Node::Node(int num, IntTree *parentTree) {
 		val = num;
 		parent = NULL;
 		left = NULL;
 		right = NULL;
+		tree = parentTree;
 	}
 	
 	IntTree::Node::~Node() {
@@ -64,7 +66,7 @@ namespace Biendeo {
 				parent->right = NULL;
 			}
 		}
-		// TODO: Figure out how to get the tree's size in this.
+		tree->size--;
 	}
 
 	IntTree::IntTree() {
@@ -82,7 +84,7 @@ namespace Biendeo {
 
 	void IntTree::addTo(int num, Node *currentNode) {
 		if (head == NULL) {
-			Node *newNode = new Node(num);
+			Node *newNode = new Node(num, this);
 			head = newNode;
 			size++;
 		} else {
@@ -90,7 +92,7 @@ namespace Biendeo {
 				if (currentNode->right != NULL) {
 					addTo(num, currentNode->right);
 				} else {
-					Node *newNode = new Node(num);
+					Node *newNode = new Node(num, this);
 					newNode->parent = currentNode;
 					currentNode->right = newNode;
 					size++;
@@ -99,7 +101,7 @@ namespace Biendeo {
 				if (currentNode->left != NULL) {
 					addTo(num, currentNode->left);
 				} else {
-					Node *newNode = new Node(num);
+					Node *newNode = new Node(num, this);
 					newNode->parent = currentNode;
 					currentNode->left = newNode;
 					size++;
