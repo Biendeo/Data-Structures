@@ -22,7 +22,7 @@
 // Experimental stuff
 //#include "IntListEx.h"
 //#include "HugeInt.h"
-//#include "RBTree.h"
+#include "RBTree.h"
 
 void testSorts();
 void testIntListEx();
@@ -32,6 +32,7 @@ void testStack();
 void testQueue();
 void testSet();
 void testTree();
+void testRBTree();
 
 int main(int argc, char *argv[]) {
 	//testIntListEx();
@@ -42,6 +43,7 @@ int main(int argc, char *argv[]) {
 	testQueue();
 	testSet();
 	testTree();
+	//testRBTree();
 
 	return EXIT_SUCCESS;
 }
@@ -160,17 +162,39 @@ void testTree() {
 	
 	std::cout << "--== Testing Trees ==--" << std::endl;
 	
+	const int numLimit = 100;
+	const int treeSize = 15;
+	
 	IntTree treeA;
 	
-	treeA.add(4);
-	treeA.add(2);
-	treeA.add(6);
-	treeA.add(1);
-	treeA.add(3);
-	treeA.add(5);
-	treeA.add(7);
+	for (int i = 0; i < treeSize; i++) {
+		treeA.add(rand() % numLimit);
+	}
 	
-	std::cout << "Size = " << treeA.getSize() << "." << std::endl;
+	std::cout << "Size = " << treeA.getSize() << std::endl;
+	
+	treeA.printStats();
+	
+	std::cout << std::endl;		
+}
+
+void testRBTree() {
+	using namespace Biendeo;
+	
+	std::cout << "--== Testing RBTrees ==--" << std::endl;
+	
+	const int numLimit = 100;
+	const int treeSize = 15;
+	
+	IntRBTree treeA;
+	
+	for (int i = 0; i < treeSize; i++) {
+		treeA.add(rand() % numLimit);
+	}
+	
+	std::cout << "Size = " << treeA.getSize() << std::endl;
+	
+	treeA.printStats();
 	
 	std::cout << std::endl;		
 }

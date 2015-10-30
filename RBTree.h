@@ -17,8 +17,20 @@
 #include <cstdlib>
 #include <stdexcept>
 
-namespace Biendeo {
+#include "Tree.h"
 
+namespace Biendeo {
+	
+	class IntRBTree : public IntTree {
+		class Node : public IntTree::Node {
+			int color;
+
+			public:
+			//Node(int num, IntRBTree *) : IntTree::Node(num) {
+			~Node() {}
+
+		};
+	};
 }
 
 #endif

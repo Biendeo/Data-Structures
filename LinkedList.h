@@ -77,7 +77,7 @@ namespace Biendeo {
 	int *IntLinkedList::toArray() {
 		int *arr = new int[size];
 		int i = 0;
-		for (Node *currentNode; currentNode != NULL; currentNode = currentNode->next) {
+		for (Node *currentNode = first; currentNode != NULL; currentNode = currentNode->next) {
 			arr[i] = currentNode->val;
 			i++;
 		}

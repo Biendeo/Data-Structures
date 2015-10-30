@@ -24,24 +24,28 @@ namespace Biendeo {
 		class Node {
 			public:
 			int val;
+			int id;
 			Node *parent;
 			Node *left;
 			Node *right;
 			IntTree *tree;
 			Node(int num, IntTree *parentTree);
 			~Node();
+			void printStats();
 		};
 		
 		void addTo(int num, Node *currentNode);
 
 		Node *head;
 		int size;
+		int nextID;
 
 		public:
 		IntTree();
 		~IntTree();
 		void add(int num);
 		int getSize();
+		void printStats();
 	};
 
 	IntTree::Node::Node(int num, IntTree *parentTree) {
@@ -50,6 +54,8 @@ namespace Biendeo {
 		left = NULL;
 		right = NULL;
 		tree = parentTree;
+		id = tree->nextID;
+		tree->nextID++;
 	}
 	
 	IntTree::Node::~Node() {
@@ -72,6 +78,7 @@ namespace Biendeo {
 	IntTree::IntTree() {
 		head = NULL;
 		size = 0;
+		nextID = 0;
 	}
 	
 	IntTree::~IntTree() {
@@ -112,6 +119,44 @@ namespace Biendeo {
 
 	int IntTree::getSize() {
 		return size;
+	}
+	
+	void IntTree::printStats() {
+		if (size == 0) {
+			std::cout << "No items" << std::endl;
+		} else {
+			printf("ID     Value  Left  Right  Parent\n");
+			head->printStats();
+		}
+	}
+	
+	void IntTree::Node::printStats() {
+		printf("%6d %6d ", id, val);
+		
+		if (left == NULL) {
+			printf("    x ");
+		} else {
+			printf("%5d ", left->id);
+		}
+		
+		if (right == NULL) {
+			printf("     x ");
+		} else {
+			printf("%6d ", right->id);
+		}
+		
+		if (parent == NULL) {
+			printf("     x \n");
+		} else {
+			printf("%6d\n", parent->id);
+		}
+		
+		if (left != NULL) {
+			left->printStats();
+		}
+		if (right != NULL) {
+			right->printStats();
+		}
 	}
 }
 
